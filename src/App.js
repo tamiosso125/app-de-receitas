@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import Home from './pages/Home';
+import Foods from './pages/Foods';
 
 function App() {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" render={ () => (<Home />) } />
+        <Route exact path="/foods" render={ () => (<Foods />) } />
       </Switch>
     </BrowserRouter>
   );
