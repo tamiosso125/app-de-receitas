@@ -1,19 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SearchIcon from '../images/searchIcon.svg';
 
-function ButtonSearch() {
+function ButtonSearch({ showSearch }) {
   return (
-    <Link to="/explore">
-      <button
-        type="button"
-        data-testid="search-top-btn"
-        src={ SearchIcon }
-      >
-        <img src={ SearchIcon } alt="search" />
-      </button>
-    </Link>
+    <button
+      type="button"
+      data-testid="search-top-btn"
+      src={ SearchIcon }
+      onClick={ showSearch }
+    >
+      <img src={ SearchIcon } alt="search" />
+    </button>
   );
 }
+
+ButtonSearch.propTypes = {
+  showSearch: PropTypes.func,
+}.isRequired;
 
 export default ButtonSearch;
