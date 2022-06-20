@@ -7,7 +7,6 @@ function Search({ location: { pathname } }) {
   const [radioOption, setRadioOption] = useState('');
 
   const { setUrlAPI } = useContext(ReceitasContext);
-
   const endpoint = [
     'https://www.themealdb.com/api/json/v1/1/',
     'https://www.thecocktaildb.com/api/json/v1/1/',
@@ -19,7 +18,6 @@ function Search({ location: { pathname } }) {
     'search.php?f=',
   ];
   const handleSubmit = () => {
-    console.log('entrou');
     let url = '';
     if (pathname === '/foods') {
       console.log('/foods');

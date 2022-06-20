@@ -10,6 +10,7 @@ function App() {
   return (
     <RecipesProvider>
       <Route path="/foods" component={ Search } />
+      <Route path="/drinks" component={ Search } />
     </RecipesProvider>
   );
 }
