@@ -1,22 +1,48 @@
 import React from 'react';
-import './App.css';
-// import rockGlass from './images/rockGlass.svg';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import Foods from './pages/Foods';
-// import Provider from './context/Provider';
+import Drinks from './pages/Drinks';
+import Explore from './pages/Explore';
+import ExploreFoods from './pages/ExploreFoods';
+import ExploreDrinks from './pages/ExploreDrinks';
+import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
+import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
+import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
+import Profile from './pages/Profile';
+import DoneRecipes from './pages/DoneRecipes';
+import FavoriteRecipes from './pages/FavoriteRecipes';
 
 function App() {
   return (
-
-    <div className="meals">
+    <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={ Login } />
-        <Route exact path="/foods" component={ Foods } />
+        <Route exact path="/" render={ () => (<Login />) } />
+        <Route exact path="/foods" render={ () => (<Foods />) } />
+        <Route exact path="/drinks" render={ () => (<Drinks />) } />
+        <Route exact path="/explore" render={ () => (<Explore />) } />
+        <Route exact path="/explore/foods" render={ () => (<ExploreFoods />) } />
+        <Route exact path="/explore/drinks" render={ () => (<ExploreDrinks />) } />
+        <Route
+          exact
+          path="/explore/foods/ingredients"
+          render={ () => (<ExploreFoodsIngredients />) }
+        />
+        <Route
+          exact
+          path="/explore/drinks/ingredients"
+          render={ () => (<ExploreDrinksIngredients />) }
+        />
+        <Route
+          exact
+          path="/explore/foods/nationalities"
+          render={ () => (<ExploreFoodsNationalities />) }
+        />
+        <Route exact path="/profile" render={ () => (<Profile />) } />
+        <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
+        <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
       </Switch>
-    </div>
-
+    </BrowserRouter>
   );
 }
 
