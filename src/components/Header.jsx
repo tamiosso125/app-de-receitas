@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ButtonSearch from './ButtonSearch';
 import ButtonProfile from './ButtonProfile';
+import Search from './Search';
 
 function Header({ title, buttonSearch, buttonProfile }) {
   const [searchInput, setSearchInput] = useState(false);
@@ -15,7 +16,7 @@ function Header({ title, buttonSearch, buttonProfile }) {
       {buttonProfile && <ButtonProfile /> }
       <h1 data-testid="page-title">{title}</h1>
       { buttonSearch && <ButtonSearch showSearch={ showSearchInput } /> }
-      { searchInput && <input type="text" data-testid="search-input" /> }
+      { searchInput && <Search /> }
     </header>
   );
 }
