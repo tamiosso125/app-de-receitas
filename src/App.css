@@ -37,15 +37,14 @@
   font-weight: 900;
 }
 
-  footer{
-  display: flex;
-  background-color: #837f7f;
-  justify-content: space-between;
-  width: 100%;
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  }
+footer{
+display: flex;
+justify-content: space-between;
+bottom: 0;
+position: fixed;
+width: 100%;
+left: 0;
+}
 
 @keyframes shake {
 
