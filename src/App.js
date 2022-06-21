@@ -12,7 +12,7 @@ import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
-import RecipesProvider from './context/Provider';
+import RecipesProvider from './context/RecipesProvider';
 
 function App() {
   return (
@@ -20,8 +20,13 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
-          <Route exact path="/foods" render={ () => (<Foods />) } />
-          <Route exact path="/drinks" render={ () => (<Drinks />) } />
+          <Route exact path="/foods" render={ (props) => (<Foods { ...props } />) } />
+          <Route
+            exact
+            path="/drinks"
+            render={ (props) => (<Drinks { ...props } />) }
+          />
+          {/* <Route exact path="/drinks" render={ () => (<Drinks />) } /> */}
           <Route exact path="/explore" render={ () => (<Explore />) } />
           <Route exact path="/explore/foods" render={ () => (<ExploreFoods />) } />
           <Route exact path="/explore/drinks" render={ () => (<ExploreDrinks />) } />

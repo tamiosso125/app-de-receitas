@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import ReceitasContext from '../context/ReceitasContext';
 
-function Search({ location: { pathname } }) {
+function Search({ pathname }) {
   const [inputSearch, setInputSearch] = useState('');
   const [radioOption, setRadioOption] = useState('');
 
@@ -20,7 +20,6 @@ function Search({ location: { pathname } }) {
   const handleSubmit = () => {
     let url = '';
     if (pathname === '/foods') {
-      console.log('/foods');
       switch (radioOption) {
       case 'ingredient':
         url = endpoint[0] + selectedOption[0] + inputSearch;
@@ -63,13 +62,13 @@ function Search({ location: { pathname } }) {
 
   return (
     <div>
-      <button
+      {/* <button
         type="button"
         data-testid="search-top-btn"
         value="qualquer"
       >
         qualquer
-      </button>
+      </button> */}
       <form>
         <input
           type="text"
@@ -122,7 +121,7 @@ function Search({ location: { pathname } }) {
 }
 
 Search.propTypes = {
-  location: PropTypes.instanceOf(Object).isRequired,
+  pathname: PropTypes.string.isRequired,
 };
 
 export default Search;
