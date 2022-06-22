@@ -1,8 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import Foods from './pages/Foods';
-import Drinks from './pages/Drinks';
+import MainPage from './pages/MainPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
@@ -20,11 +19,15 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
-          <Route exact path="/foods" render={ (props) => (<Foods { ...props } />) } />
+          <Route
+            exact
+            path="/foods"
+            render={ (props) => (<MainPage { ...props } />) }
+          />
           <Route
             exact
             path="/drinks"
-            render={ (props) => (<Drinks { ...props } />) }
+            render={ (props) => (<MainPage { ...props } />) }
           />
           {/* <Route exact path="/drinks" render={ () => (<Drinks />) } /> */}
           <Route exact path="/explore" render={ () => (<Explore />) } />
