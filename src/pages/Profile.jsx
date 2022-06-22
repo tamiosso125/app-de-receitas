@@ -5,38 +5,52 @@ import Header from '../components/Header';
 
 function Profile() {
   const user = localStorage.getItem('user');
-  const { email } = JSON.parse(user);
+  const Email = () => {
+    if (user !== null) {
+      console.log('USERRRRR: ', user);
+      const { email } = JSON.parse(user);
+      return email;
+    }
+  };
+
   return (
     <>
       <Header title="Profile" buttonProfile />
       <h2
         data-testid="profile-email"
       >
-        { email }
+        {Email()}
 
       </h2>
       <Link to="/done-recipes">
-        <input
+        <button
           type="button"
           data-testid="profile-done-btn"
           value="Done Recipes"
-        />
+          name="Done Recipes"
+        >
+          Done Recipes
+        </button>
       </Link>
 
       <Link to="/favorite-recipes">
-        <input
+        <button
           type="button"
           data-testid="profile-favorite-btn"
           value="Favorite Recipes"
-        />
+        >
+          Favorite Recipes
+        </button>
       </Link>
       <Link to="/">
-        <input
+        <button
           type="button"
           data-testid="profile-logout-btn"
           value="Logout"
           onClick={ () => localStorage.clear() }
-        />
+        >
+          Logout
+        </button>
       </Link>
 
       <Footer />
