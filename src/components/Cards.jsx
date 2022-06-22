@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 
 function Cards({ returnAPI, size }) {
   const keyAPI = Object.keys(returnAPI)[0];
-  console.log('key retornanda pela API', keyAPI);
-  console.log('Valor contido na key', returnAPI[keyAPI]);
   return (
     <main>
       {returnAPI[keyAPI] !== null

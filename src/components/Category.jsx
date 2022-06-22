@@ -17,7 +17,6 @@ function Category({ returnAPI, pathname }) {
   ];
 
   const selectedCategory = ({ target }) => {
-    console.log('entrou selected');
     const { value } = target;
     if (pathname === '/drinks') {
       const urlFilter = endpointList[0] + value;
@@ -35,21 +34,40 @@ function Category({ returnAPI, pathname }) {
       }
     }
   };
+
+  const resetFilter = () => {
+    if (pathname === '/drinks') {
+      setUrlAPI(defaultEndpoint[0]);
+    } else {
+      setUrlAPI(defaultEndpoint[1]);
+    }
+  };
+
   return (
     <div>
       {
         values
-        && values.slice(0, FIVE).map(({ strCategory }, index) => (
-          <button
-            type="button"
-            key={ index }
-            data-testid={ `${strCategory}-category-filter` }
-            onClick={ selectedCategory }
-            value={ strCategory }
-          >
-            {strCategory}
-          </button>
-        ))
+        && (
+          <div>
+            <button
+              type="button"
+              data-testid="All-category-filter"
+              onClick={ resetFilter }
+            >
+              All
+            </button>
+            {values.slice(0, FIVE).map(({ strCategory }, index) => (
+              <button
+                type="button"
+                key={ index }
+                data-testid={ `${strCategory}-category-filter` }
+                onClick={ selectedCategory }
+                value={ strCategory }
+              >
+                {strCategory}
+              </button>))}
+          </div>
+        )
       }
     </div>
   );
