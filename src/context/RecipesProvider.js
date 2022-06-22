@@ -14,6 +14,8 @@ function RecipesProvider({ children }) {
       const requestJson = await request.json();
       setData(requestJson);
     };
+    if (!urlAPI) return;
+    // Caso a URL estejá vazia o fetch não é feito, evitando erro
     fetchFunc();
   }, [urlAPI]);
 
