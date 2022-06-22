@@ -50,7 +50,7 @@ function MainPage(props) {
       {!loading && (
         <div>
           <Category returnAPI={ categoryData } pathname={ pathname } />
-          <Cards size={ 12 } returnAPI={ data } />
+          <Cards size={ 12 } returnAPI={ data } pathname={ pathname } />
         </div>
       )}
       <Footer />
