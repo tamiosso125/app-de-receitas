@@ -13,8 +13,7 @@ import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipesProvider from './context/RecipesProvider';
-import DetailsFoods from './pages/DetailsFoods';
-import DetailsDrinks from './pages/DetailsDrinks';
+import MainDetails from './pages/MainDetails';
 
 function App() {
   return (
@@ -22,7 +21,7 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
-          <Route path="/foods/:id" render={ () => (<DetailsFoods />) } />
+          <Route path="/foods/:id" render={ () => (<MainDetails />) } />
           <Route
             exact
             path="/foods"
@@ -33,7 +32,7 @@ function App() {
             path="/drinks"
             render={ (props) => (<MainPage { ...props } />) }
           />
-          <Route path="/drinks/:id" render={ () => (<DetailsDrinks />) } />
+          <Route path="/drinks/:id" render={ () => (<MainDetails />) } />
           <Route exact path="/explore" render={ () => (<Explore />) } />
           <Route exact path="/explore/foods" render={ () => (<ExploreFoods />) } />
           <Route exact path="/explore/drinks" render={ () => (<ExploreDrinks />) } />
