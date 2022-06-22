@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReceitasContext from './ReceitasContext';
 
 function RecipesProvider({ children }) {
-  const [urlAPI, setUrlAPI] = useState('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  const [urlAPI, setUrlAPI] = useState('');
   const [data, setData] = useState({});
   const [ableToRedirect, setAbleToRedirect] = useState(false);
   const [urlRedirect, setUrlRedirect] = useState('');
@@ -14,6 +14,8 @@ function RecipesProvider({ children }) {
       const requestJson = await request.json();
       setData(requestJson);
     };
+    if (!urlAPI) return;
+    // Caso a URL estejá vazia o fetch não é feito, evitando erro
     fetchFunc();
   }, [urlAPI]);
 
