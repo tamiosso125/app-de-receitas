@@ -1,13 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import ReceitasContext from '../context/ReceitasContext';
 
-function Category({ returnAPI }) {
+function Category({ returnAPI, pathname }) {
+  const { setUrlAPI } = useContext(ReceitasContext);
   const values = Object.values(returnAPI)[0];
   const FIVE = 5;
-  // TODO onclick mandando para url
-  //   www.thecocktaildb.com/api/json/v1/1/filter.php?c=
-  //   ou
-  //   www.themealdb.com/api/json/v1/1/filter.php?c=
+  const endpointList = [
+    'https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=',
+    'https://www.themealdb.com/api/json/v1/1/filter.php?c=',
+  ];
+
+  const selectedCategory = ({ target }) => {
+    console.log('entrou selected');
+    const { value } = target;
+    if (pathname === '/drinks') {
+      setUrlAPI(endpointList[0] + value);
+    } else {
+      setUrlAPI(endpointList[1] + value);
+    }
+  };
   return (
     <div>
       {
@@ -17,6 +29,8 @@ function Category({ returnAPI }) {
             type="button"
             key={ index }
             data-testid={ `${strCategory}-category-filter` }
+            onClick={ selectedCategory }
+            value={ strCategory }
           >
             {strCategory}
           </button>
@@ -28,6 +42,7 @@ function Category({ returnAPI }) {
 
 Category.propTypes = {
   returnAPI: PropTypes.instanceOf(Object).isRequired,
+  pathname: PropTypes.string.isRequired,
 };
 
 export default Category;

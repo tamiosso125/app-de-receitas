@@ -49,7 +49,7 @@ function MainPage(props) {
       {loading && <Loading />}
       {!loading && (
         <div>
-          <Category returnAPI={ categoryData } />
+          <Category returnAPI={ categoryData } pathname={ pathname } />
           <Cards size={ 12 } returnAPI={ data } />
         </div>
       )}

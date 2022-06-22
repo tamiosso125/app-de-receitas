@@ -15,15 +15,22 @@ function RecipesProvider({ children }) {
       const request = await fetch(urlAPI);
       const requestJson = await request.json();
       setData(requestJson);
-      // Busca das categorias.
-      const requestCategory = await fetch(categoryAPI);
-      const requestCategoryJson = await requestCategory.json();
-      setCategoryData(requestCategoryJson);
     };
     if (!urlAPI) return;
     // Caso a URL estejá vazia o fetch não é feito, evitando erro
     fetchFunc();
   }, [urlAPI]);
+
+  useEffect(() => {
+    const fetchFunc = async () => {
+      const requestCategory = await fetch(categoryAPI);
+      const requestCategoryJson = await requestCategory.json();
+      setCategoryData(requestCategoryJson);
+    };
+    if (!categoryAPI) return;
+
+    fetchFunc();
+  }, [categoryAPI]);
 
   useEffect(() => {
     const { meals, drinks } = data;
