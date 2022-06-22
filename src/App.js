@@ -2,8 +2,7 @@ import React from 'react';
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import Foods from './pages/Foods';
-import Drinks from './pages/Drinks';
+import MainPage from './pages/MainPage';
 import Explore from './pages/Explore';
 import ExploreFoods from './pages/ExploreFoods';
 import ExploreDrinks from './pages/ExploreDrinks';
@@ -14,6 +13,8 @@ import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipesProvider from './context/RecipesProvider';
+import DetailsFoods from './pages/DetailsFoods';
+import DetailsDrinks from './pages/DetailsDrinks';
 
 function App() {
   return (
@@ -21,13 +22,18 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
-          <Route exact path="/foods" render={ (props) => (<Foods { ...props } />) } />
+          <Route path="/foods/:id" render={ () => (<DetailsFoods />) } />
+          <Route
+            exact
+            path="/foods"
+            render={ (props) => (<MainPage { ...props } />) }
+          />
           <Route
             exact
             path="/drinks"
-            render={ (props) => (<Drinks { ...props } />) }
+            render={ (props) => (<MainPage { ...props } />) }
           />
-          {/* <Route exact path="/drinks" render={ () => (<Drinks />) } /> */}
+          <Route path="/drinks/:id" render={ () => (<DetailsDrinks />) } />
           <Route exact path="/explore" render={ () => (<Explore />) } />
           <Route exact path="/explore/foods" render={ () => (<ExploreFoods />) } />
           <Route exact path="/explore/drinks" render={ () => (<ExploreDrinks />) } />

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import ReceitasContext from './ReceitasContext';
 
 function RecipesProvider({ children }) {
-  const [urlAPI, setUrlAPI] = useState('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  const [urlAPI, setUrlAPI] = useState('');
   const [data, setData] = useState({});
-  console.log(data);
-  const history = useHistory();
+  const [ableToRedirect, setAbleToRedirect] = useState(false);
+  const [urlRedirect, setUrlRedirect] = useState('');
 
   useEffect(() => {
     const fetchFunc = async () => {
@@ -15,6 +14,8 @@ function RecipesProvider({ children }) {
       const requestJson = await request.json();
       setData(requestJson);
     };
+    if (!urlAPI) return;
+    // Caso a URL estejá vazia o fetch não é feito, evitando erro
     fetchFunc();
   }, [urlAPI]);
 
@@ -22,11 +23,13 @@ function RecipesProvider({ children }) {
     const { meals, drinks } = data;
     if (meals && meals.length === 1) {
       const { idMeal } = meals[0];
-      history.push(`/foods/${idMeal}`);
+      setAbleToRedirect(true);
+      setUrlRedirect(`/foods/${idMeal}`);
     }
     if (drinks && drinks.length === 1) {
       const { idDrink } = drinks[0];
-      history.push(`/drinks/${idDrink}`);
+      setAbleToRedirect(true);
+      setUrlRedirect(`/drinks/${idDrink}`);
     }
     if (meals === null) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
@@ -34,12 +37,15 @@ function RecipesProvider({ children }) {
     if (drinks === null) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-  }, [data, history]);
+  }, [data]);
 
   const context = {
     data,
     urlAPI,
     setUrlAPI,
+    ableToRedirect,
+    setAbleToRedirect,
+    urlRedirect,
   };
   return (
     <ReceitasContext.Provider value={ context }>
