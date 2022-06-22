@@ -16,6 +16,7 @@ function Cards({ returnAPI, size }) {
           <img
             src={ element.strMealThumb || element.strDrinkThumb }
             alt={ element.strMeal || element.strDrink }
+            width="80px" // Só para facilitar visualização até o momento.
             data-testid={ `${index}-card-img` }
           />
           <p data-testid={ `${index}-card-name` }>
