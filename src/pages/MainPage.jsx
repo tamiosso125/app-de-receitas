@@ -41,7 +41,7 @@ function MainPage(props) {
         route={ pathname }
       />
       {loading && <Loading />}
-      {!loading && <Cards returnAPI={ data } />}
+      {!loading && <Cards size={ 12 } returnAPI={ data } />}
     </>
   );
 }
