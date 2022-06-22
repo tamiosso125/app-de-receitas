@@ -1,12 +1,20 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import ReceitasContext from '../context/ReceitasContext';
 
 function Search({ pathname }) {
   const [inputSearch, setInputSearch] = useState('');
   const [radioOption, setRadioOption] = useState('');
 
-  const { setUrlAPI } = useContext(ReceitasContext);
+  const history = useHistory();
+  const {
+    setUrlAPI,
+    urlRedirect,
+    ableToRedirect,
+    setAbleToRedirect,
+  } = useContext(ReceitasContext);
+
   const endpoint = [
     'https://www.themealdb.com/api/json/v1/1/',
     'https://www.thecocktaildb.com/api/json/v1/1/',
@@ -17,6 +25,18 @@ function Search({ pathname }) {
     'search.php?s=',
     'search.php?f=',
   ];
+
+  useEffect(() => {
+    const redirect = () => {
+      if (ableToRedirect) {
+        setAbleToRedirect(false);
+        history.push(urlRedirect);
+      }
+    };
+
+    redirect();
+  }, [urlRedirect]);
+
   const handleSubmit = () => {
     let url = '';
     if (pathname === '/foods') {
