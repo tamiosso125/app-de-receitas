@@ -5,6 +5,7 @@ import titleGenerator from '../services/titleGenerator';
 import ReceitasContext from '../context/ReceitasContext';
 import Loading from '../components/Loading';
 import Cards from '../components/Cards';
+import Footer from '../components/Footer';
 
 function MainPage(props) {
   const { location: { pathname } } = props;
@@ -42,6 +43,7 @@ function MainPage(props) {
       />
       {loading && <Loading />}
       {!loading && <Cards size={ 12 } returnAPI={ data } />}
+      <Footer />
     </>
   );
 }
