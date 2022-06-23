@@ -1,15 +1,31 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import titleGenerator from '../services/titleGenerator';
 
 function ExploreDrinksFoods(props) {
   const { location: { pathname } } = props;
-  console.log(pathname);
-  // /explore/drinks
-  // /explore/foods
+  const history = useHistory();
+  const randomRecipes = async () => {
+    let url = '';
+    if (pathname.includes('drinks')) {
+      url = 'https://www.thecocktaildb.com/api/json/v1/1/random.php';
+    } else {
+      url = 'https://www.themealdb.com/api/json/v1/1/random.php';
+    }
+    const request = await fetch(url);
+    const requestJson = await request.json();
+    const recipeObject = Object.values(requestJson)[0][0];
+    const idRecipe = recipeObject.idMeal || recipeObject.idDrink;
+    if (pathname.includes('drinks')) {
+      history.push(`/drinks/${idRecipe}`);
+    } else {
+      history.push(`/foods/${idRecipe}`);
+    }
+  };
+
   return (
     <>
       <Header title={ titleGenerator(pathname) } buttonProfile />
@@ -35,6 +51,7 @@ function ExploreDrinksFoods(props) {
       <button
         type="button"
         data-testid="explore-surprise"
+        onClick={ () => randomRecipes() }
       >
         Surprise me!
       </button>
