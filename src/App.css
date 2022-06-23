@@ -46,6 +46,30 @@ footer {
   width: 100%;
 }
 
+.CardContainer {
+  display: block;
+  height: 100px;
+  width: 400px;
+  position: relative;
+}
+
+.Card {
+  width: 50vw;
+  position: absolute;
+  /* height: 100px; */
+}
+
+.imageDetails {
+  height: 50px;
+  margin: 10px;
+  width: 50px;
+}
+
+.startBtn {
+  bottom: 0px;
+  position: fixed;
+}
+
 @keyframes shake {
 
   0% {

@@ -15,9 +15,9 @@ function MainDetails() {
     ingredients: [],
     measure: [],
   });
+  const doneRecipe = localStorage.getItem('doneRecipes');
   const { pathname } = location;
   const type = pathname.split('/')[1];
-
   const generateNewObj = (resultType) => {
     const newObj = {
       thumb: type === 'foods' ? resultType.strMealThumb : resultType.strDrinkThumb,
@@ -40,9 +40,15 @@ function MainDetails() {
     setData();
   }, []);
 
+  console.log(typeof doneRecipe);
   return (
     <div>
-      <img data-testid="recipe-photo" src={ dataItem.thumb } alt="recipe" />
+      <img
+        data-testid="recipe-photo"
+        src={ dataItem.thumb }
+        className="imageDetails"
+        alt="recipe"
+      />
       <h1 data-testid="recipe-title">{dataItem.title}</h1>
       <button type="button" data-testid="share-btn">share</button>
       <p type="button" data-testid="favorite-btn">fav</p>
@@ -72,7 +78,14 @@ function MainDetails() {
         )}
 
       <CardDetails path={ type } />
-      <button type="button" data-testid="start-recipe-btn">start</button>
+      {/* {filterDoneRecipe() ? '' : (
+        <button
+          className="startBtn"
+          type="button"
+          data-testid="start-recipe-btn"
+        >
+          Start Recipe
+        </button>)} */}
     </div>
   );
 }

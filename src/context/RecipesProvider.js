@@ -38,6 +38,16 @@ function RecipesProvider({ children }) {
       global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
   }, [data]);
+  // const doneRecipesLocal = {
+  //   id: idMeal || idDrink,
+  //   type: strMeal || strDrink,
+  //   nationality: strArea || '',
+  //   category: resultType.strCategory || '',
+  //   alcoholicOrNot: strAlcoholic || '',
+  //   name: strMeal || strDrink,
+  //   image: resultType.strMealThumb || resultType.strDrinkThumb,
+  // };
+  localStorage.setItem('doneRecipes', [[{}]]);
 
   const context = {
     data,

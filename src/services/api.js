@@ -7,7 +7,6 @@ const fetchDetailsApi = async (id, type) => {
   const url = type === 'foods' ? urlFoods : urlDrinks;
   const request = await fetch(url);
   const result = await request.json();
-  console.log(result);
   return result;
 };
 
