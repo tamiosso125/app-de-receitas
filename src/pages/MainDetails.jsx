@@ -15,7 +15,14 @@ function MainDetails() {
     ingredients: [],
     measure: [],
   });
-  const doneRecipe = localStorage.getItem('doneRecipes');
+
+  let doneRecipe = [{}];
+  if (localStorage.getItem('doneRecipes')) {
+    doneRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
+    console.log(doneRecipe);
+    // doneRecipe = doneRecipe ? (doneRecipe) : [{}];
+  }
+
   const { pathname } = location;
   const type = pathname.split('/')[1];
   const generateNewObj = (resultType) => {
@@ -40,7 +47,7 @@ function MainDetails() {
     setData();
   }, []);
 
-  console.log(typeof doneRecipe);
+  console.log('doneRecipe Type:', typeof doneRecipe);
   return (
     <div>
       <img
@@ -78,14 +85,14 @@ function MainDetails() {
         )}
 
       <CardDetails path={ type } />
-      {/* {filterDoneRecipe() ? '' : (
+      { !doneRecipe.some((recipe) => recipe.id === id) && (
         <button
           className="startBtn"
           type="button"
           data-testid="start-recipe-btn"
         >
           Start Recipe
-        </button>)} */}
+        </button>)}
     </div>
   );
 }

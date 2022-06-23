@@ -47,7 +47,7 @@ function RecipesProvider({ children }) {
   //   name: strMeal || strDrink,
   //   image: resultType.strMealThumb || resultType.strDrinkThumb,
   // };
-  localStorage.setItem('doneRecipes', [[{}]]);
+  // localStorage.setItem('doneRecipes', [[{}]]);
 
   const context = {
     data,
