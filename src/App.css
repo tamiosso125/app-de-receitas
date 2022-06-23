@@ -49,14 +49,13 @@ footer {
 .CardContainer {
   display: block;
   height: 100px;
-  width: 400px;
   position: relative;
+  width: 400px;
 }
 
 .Card {
-  width: 50vw;
   position: absolute;
-  /* height: 100px; */
+  width: 50vw;
 }
 
 .imageDetails {
@@ -66,7 +65,7 @@ footer {
 }
 
 .startBtn {
-  bottom: 0px;
+  bottom: 0;
   position: fixed;
 }
 
