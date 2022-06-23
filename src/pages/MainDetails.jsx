@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import fetchDetailsApi from '../services/api';
 import { filterMeasure, filterIngredients } from '../services/filters';
+import CardDetails from '../components/CardDetails';
 
 function MainDetails() {
   const { id } = useParams();
@@ -70,7 +71,7 @@ function MainDetails() {
           </video>
         )}
 
-      <div data-testid={ `${0}-recomendation-card` } />
+      <CardDetails path={ type } />
       <button type="button" data-testid="start-recipe-btn">start</button>
     </div>
   );
