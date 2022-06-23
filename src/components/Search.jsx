@@ -82,13 +82,6 @@ function Search({ pathname }) {
 
   return (
     <div>
-      {/* <button
-        type="button"
-        data-testid="search-top-btn"
-        value="qualquer"
-      >
-        qualquer
-      </button> */}
       <form>
         <input
           type="text"

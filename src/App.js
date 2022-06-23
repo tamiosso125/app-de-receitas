@@ -14,6 +14,7 @@ import RecipesProvider from './context/RecipesProvider';
 import DetailsFoods from './pages/DetailsFoods';
 import DetailsDrinks from './pages/DetailsDrinks';
 import ExploreDrinksFoods from './pages/ExploreDrinksFoods';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -70,6 +71,7 @@ function App() {
           />
           <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
           <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
+          <Route path="*" render={ () => (<NotFound />) } />
         </Switch>
       </BrowserRouter>
     </RecipesProvider>

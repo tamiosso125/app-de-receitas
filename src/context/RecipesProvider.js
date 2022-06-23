@@ -14,6 +14,7 @@ function RecipesProvider({ children }) {
     const fetchFunc = async () => {
       const request = await fetch(urlAPI);
       const requestJson = await request.json();
+      console.log('retorno json:', requestJson);
       setData(requestJson);
     };
     if (!urlAPI) return;
