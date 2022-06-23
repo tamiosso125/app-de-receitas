@@ -1,9 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
+import titleGenerator from '../services/titleGenerator';
 
-function Profile() {
+function Profile(props) {
+  const { location: { pathname } } = props;
   const user = localStorage.getItem('user');
   const Email = () => {
     if (user !== null) {
@@ -15,7 +18,7 @@ function Profile() {
 
   return (
     <>
-      <Header title="Profile" buttonProfile />
+      <Header title={ titleGenerator(pathname) } buttonProfile />
       <h2
         data-testid="profile-email"
       >
@@ -57,5 +60,9 @@ function Profile() {
     </>
   );
 }
+
+Profile.propTypes = {
+  location: PropTypes.instanceOf(Object).isRequired,
+};
 
 export default Profile;

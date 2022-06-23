@@ -34,7 +34,11 @@ function App() {
             render={ (props) => (<MainPage { ...props } />) }
           />
           <Route path="/drinks/:id" render={ () => (<DetailsDrinks />) } />
-          <Route exact path="/explore" render={ () => (<Explore />) } />
+          <Route
+            exact
+            path="/explore"
+            render={ (props) => (<Explore { ...props } />) }
+          />
           <Route exact path="/explore/foods" render={ () => (<ExploreFoods />) } />
           <Route exact path="/explore/drinks" render={ () => (<ExploreDrinks />) } />
           <Route
@@ -52,7 +56,11 @@ function App() {
             path="/explore/foods/nationalities"
             render={ () => (<ExploreFoodsNationalities />) }
           />
-          <Route exact path="/profile" render={ () => (<Profile />) } />
+          <Route
+            exact
+            path="/profile"
+            render={ (props) => (<Profile { ...props } />) }
+          />
           <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
           <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
         </Switch>
