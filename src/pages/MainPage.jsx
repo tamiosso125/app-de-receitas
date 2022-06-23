@@ -12,12 +12,17 @@ function MainPage(props) {
   const { location: { pathname } } = props;
   const { data, setUrlAPI, setCategoryAPI, categoryData } = useContext(ReceitasContext);
   const [loading, setLoading] = useState(true);
+  const [changePoint, setChangePoint] = useState(pathname);
   const urlDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
   const urlFoods = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
   const categoryList = [
     'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
     'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
   ];
+  useEffect(() => {
+    setChangePoint(pathname);
+    setLoading(true);
+  }, [pathname]);
   useEffect(() => {
     const changeURL = () => {
       if (pathname === '/drinks') {
@@ -29,7 +34,7 @@ function MainPage(props) {
       }
     };
     changeURL();
-  }, []);
+  }, [changePoint]);
   useEffect(() => {
     const controlLoading = () => {
       if (data.meals || data.drinks) {
@@ -41,16 +46,16 @@ function MainPage(props) {
   return (
     <>
       <Header
-        title={ titleGenerator(pathname) }
+        title={ titleGenerator(changePoint) }
         buttonSearch
         buttonProfile
-        route={ pathname }
+        route={ changePoint }
       />
       {loading && <Loading />}
       {!loading && (
         <div>
-          <Category returnAPI={ categoryData } pathname={ pathname } />
-          <Cards size={ 12 } returnAPI={ data } pathname={ pathname } />
+          <Category returnAPI={ categoryData } pathname={ changePoint } />
+          <Cards size={ 12 } returnAPI={ data } pathname={ changePoint } />
         </div>
       )}
       <Footer />
