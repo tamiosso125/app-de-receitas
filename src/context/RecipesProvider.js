@@ -5,6 +5,8 @@ import ReceitasContext from './ReceitasContext';
 function RecipesProvider({ children }) {
   const [urlAPI, setUrlAPI] = useState('');
   const [data, setData] = useState({});
+  const [categoryAPI, setCategoryAPI] = useState('');
+  const [categoryData, setCategoryData] = useState({});
   const [ableToRedirect, setAbleToRedirect] = useState(false);
   const [urlRedirect, setUrlRedirect] = useState('');
 
@@ -18,6 +20,17 @@ function RecipesProvider({ children }) {
     // Caso a URL estejá vazia o fetch não é feito, evitando erro
     fetchFunc();
   }, [urlAPI]);
+
+  useEffect(() => {
+    const fetchFunc = async () => {
+      const requestCategory = await fetch(categoryAPI);
+      const requestCategoryJson = await requestCategory.json();
+      setCategoryData(requestCategoryJson);
+    };
+    if (!categoryAPI) return;
+
+    fetchFunc();
+  }, [categoryAPI]);
 
   useEffect(() => {
     const { meals, drinks } = data;
@@ -46,6 +59,9 @@ function RecipesProvider({ children }) {
     ableToRedirect,
     setAbleToRedirect,
     urlRedirect,
+    categoryData,
+    setCategoryData,
+    setCategoryAPI,
   };
   return (
     <ReceitasContext.Provider value={ context }>
