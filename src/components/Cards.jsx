@@ -3,11 +3,9 @@ import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 
 function Cards({ returnAPI, size, pathname }) {
-  const keyAPI = Object.keys(returnAPI)[0];
   const history = useHistory();
   const values = Object.values(returnAPI)[0];
   const isIngredientsPage = pathname.includes('ingredients');
-  console.log(isIngredientsPage); // Verdadeiro se tiver ingredientes
   const urlImages = ['https://www.themealdb.com/images/ingredients/',
     'https://www.thecocktaildb.com/images/ingredients/'];
   const directsRecipes = () => {
@@ -20,14 +18,12 @@ function Cards({ returnAPI, size, pathname }) {
       }
     }
   };
-  console.log(returnAPI[keyAPI]);
-  console.log(values);
   return (
     <main>
       {values
       && Object.values(returnAPI)[0].slice(0, size).map((element, index) => (
         <Link
-          key={ element.idMeal || element.idDrink }
+          key={ element.idMeal || element.idDrink || index }
           to={ !isIngredientsPage && `${pathname}/${element.idMeal || element.idDrink}` }
           onClick={ () => directsRecipes() }
         >
@@ -37,8 +33,8 @@ function Cards({ returnAPI, size, pathname }) {
           >
             <img
               src={ isIngredientsPage
-                ? (`${urlImages[0]}${element.strIngredient}.png`
-                || `${urlImages[1]}${element.strIngredient1}.png`)
+                ? (`${urlImages[0]}${element.strIngredient}-Small.png`
+                || `${urlImages[1]}${element.strIngredient1}-Small.png`)
 
                 : (element.strMealThumb
                 || element.strDrinkThumb) }

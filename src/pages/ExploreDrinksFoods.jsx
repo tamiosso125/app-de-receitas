@@ -1,14 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import titleGenerator from '../services/titleGenerator';
-import ReceitasContext from '../context/ReceitasContext';
 
 function ExploreDrinksFoods(props) {
   const { location: { pathname } } = props;
-  const { setUrlAPI } = useContext(ReceitasContext);
   const history = useHistory();
   const randomRecipes = async () => {
     let url = '';
@@ -29,12 +27,9 @@ function ExploreDrinksFoods(props) {
   };
 
   const searchIngredients = () => {
-    console.log('Cliclou');
     if (pathname.includes('drinks')) {
-      setUrlAPI('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
       history.push('/explore/drinks/ingredients');
     } else {
-      setUrlAPI('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
       history.push('/explore/foods/ingredients');
     }
   };
