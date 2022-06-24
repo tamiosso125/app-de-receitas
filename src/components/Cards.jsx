@@ -21,37 +21,46 @@ function Cards({ returnAPI, size, pathname }) {
   return (
     <main>
       {values
-      && Object.values(returnAPI)[0].slice(0, size).map((element, index) => (
-        <Link
-          key={ element.idMeal || element.idDrink || index }
-          to={ !isIngredientsPage && `${pathname}/${element.idMeal || element.idDrink}` }
-          onClick={ () => directsRecipes() }
-        >
-          <div
-            data-testid={ isIngredientsPage
-              ? `${index}-ingredient-card` : `${index}-recipe-card` }
+      && Object.values(returnAPI)[0].slice(0, size).map((element, index) => {
+        // console.log('Teste');
+        const generateUrlImage = () => {
+          if (pathname.includes('drinks')) {
+            return `${urlImages[1] + element.strIngredient1}-Small.png`;
+          }
+          return (`${urlImages[0] + element.strIngredient}-Small.png`);
+        };
+        return (
+          <Link
+            key={ element.idMeal || element.idDrink || index }
+            to={ !isIngredientsPage
+              && `${pathname}/${element.idMeal || element.idDrink}` }
+            onClick={ () => directsRecipes() }
           >
-            <img
-              src={ isIngredientsPage
-                ? (`${urlImages[0]}${element.strIngredient}-Small.png`
-                || `${urlImages[1]}${element.strIngredient1}-Small.png`)
+            <div
+              data-testid={ isIngredientsPage
+                ? `${index}-ingredient-card` : `${index}-recipe-card` }
+            >
+              <img
+                src={ isIngredientsPage
+                  ? generateUrlImage()
 
-                : (element.strMealThumb
+                  : (element.strMealThumb
                 || element.strDrinkThumb) }
-              alt={ isIngredientsPage
-                ? element.strIngredient || element.strIngredient1
-                : element.strMeal || element.strDrink }
-              width="80px" // Só para facilitar visualização até o momento.
-              data-testid={ `${index}-card-img` }
-            />
-            <p data-testid={ `${index}-card-name` }>
-              { isIngredientsPage
-                ? element.strIngredient || element.strIngredient1
-                : element.strMeal || element.strDrink }
-            </p>
-          </div>
-        </Link>
-      ))}
+                alt={ isIngredientsPage
+                  ? element.strIngredient || element.strIngredient1
+                  : element.strMeal || element.strDrink }
+                width="80px" // Só para facilitar visualização até o momento.
+                data-testid={ `${index}-card-img` }
+              />
+              <p data-testid={ `${index}-card-name` }>
+                { isIngredientsPage
+                  ? element.strIngredient || element.strIngredient1
+                  : element.strMeal || element.strDrink }
+              </p>
+            </div>
+          </Link>
+        );
+      })}
     </main>
   );
 }
