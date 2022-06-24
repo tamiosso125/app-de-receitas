@@ -59,12 +59,6 @@ function MainPage(props) {
             <Cards size={ 12 } returnAPI={ data } pathname={ changePoint } />
           </div>
         )}
-      {/* {!loading && (
-        <div>
-          <Category returnAPI={ categoryData } pathname={ changePoint } />
-          <Cards size={ 12 } returnAPI={ data } pathname={ changePoint } />
-        </div>
-      )} */}
       <Footer />
     </>
   );

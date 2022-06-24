@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ReceitasContext from '../context/ReceitasContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
-import titleGenerator from '../services/titleGenerator';
+// import titleGenerator from '../services/titleGenerator';
 import Cards from '../components/Cards';
 import Loading from '../components/Loading';
 
@@ -27,9 +27,10 @@ function ExploreIngredients(props) {
       setLoading(false);
     }
   }, [values]);
+  // titleGenerator(pathname)
   return (
     <>
-      <Header title={ titleGenerator(pathname) } buttonProfile />
+      <Header title="Explore Ingredients" buttonProfile />
       {loading
         ? <Loading />
         : <Cards size={ 12 } returnAPI={ data } pathname={ pathname } />}

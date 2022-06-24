@@ -22,7 +22,6 @@ function Cards({ returnAPI, size, pathname }) {
     <main>
       {values
       && Object.values(returnAPI)[0].slice(0, size).map((element, index) => {
-        // console.log('Teste');
         const generateUrlImage = () => {
           if (pathname.includes('drinks')) {
             return `${urlImages[1] + element.strIngredient1}-Small.png`;
