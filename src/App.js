@@ -14,6 +14,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipesProvider from './context/RecipesProvider';
 import MainDetails from './pages/MainDetails';
+import InProgress from './pages/InProgress';
 
 function App() {
   return (
@@ -54,6 +55,8 @@ function App() {
           <Route exact path="/profile" render={ () => (<Profile />) } />
           <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
           <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
+          <Route exact path="/foods/:id/in-progress" render={ () => (<InProgress />) } />
+          <Route exact path="/drinks/:id/in-progress" render={ () => (<InProgress />) } />
         </Switch>
       </BrowserRouter>
     </RecipesProvider>
