@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import fetchDetailsApi from '../services/api';
-import { filterMeasure, filterIngredients } from '../services/filters';
+import { generateNewObj, verifyId } from '../services/filters';
 import CardDetails from '../components/CardDetails';
 
 function MainDetails() {
   const { id } = useParams();
   const location = useLocation();
+  const [btnTitle, setBtnTitle] = useState('Start Recipe');
   const [dataItem, setDataItem] = useState({
     thumb: '',
     title: '',
@@ -19,35 +20,21 @@ function MainDetails() {
   let doneRecipe = [{}];
   if (localStorage.getItem('doneRecipes')) {
     doneRecipe = JSON.parse(localStorage.getItem('doneRecipes'));
-    console.log(doneRecipe);
-    // doneRecipe = doneRecipe ? (doneRecipe) : [{}];
   }
 
   const { pathname } = location;
   const type = pathname.split('/')[1];
-  const generateNewObj = (resultType) => {
-    const newObj = {
-      thumb: type === 'foods' ? resultType.strMealThumb : resultType.strDrinkThumb,
-      title: type === 'foods' ? resultType.strMeal : resultType.strDrink,
-      category: type === 'foods' ? resultType.strCategory : resultType.strAlcoholic,
-      instructions: resultType.strInstructions,
-      video: type === 'foods' ? resultType.strYoutube : null,
-      ingredients: filterIngredients(resultType),
-      measure: filterMeasure(resultType),
-    };
-    return (newObj);
-  };
 
   useEffect(() => {
     const setData = async () => {
       const result = await fetchDetailsApi(id, type);
       const resultType = type === 'foods' ? result.meals[0] : result.drinks[0];
-      return setDataItem(generateNewObj(resultType));
+      return setDataItem(generateNewObj(resultType, type));
     };
+    verifyId(setBtnTitle, id);
     setData();
   }, []);
 
-  console.log('doneRecipe Type:', typeof doneRecipe);
   return (
     <div>
       <img
@@ -91,7 +78,7 @@ function MainDetails() {
           type="button"
           data-testid="start-recipe-btn"
         >
-          Start Recipe
+          { btnTitle }
         </button>)}
     </div>
   );
