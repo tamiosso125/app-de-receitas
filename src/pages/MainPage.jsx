@@ -51,13 +51,20 @@ function MainPage(props) {
         buttonProfile
         route={ changePoint }
       />
-      {loading && <Loading />}
-      {!loading && (
+      {loading
+        ? <Loading />
+        : (
+          <div>
+            <Category returnAPI={ categoryData } pathname={ changePoint } />
+            <Cards size={ 12 } returnAPI={ data } pathname={ changePoint } />
+          </div>
+        )}
+      {/* {!loading && (
         <div>
           <Category returnAPI={ categoryData } pathname={ changePoint } />
           <Cards size={ 12 } returnAPI={ data } pathname={ changePoint } />
         </div>
-      )}
+      )} */}
       <Footer />
     </>
   );

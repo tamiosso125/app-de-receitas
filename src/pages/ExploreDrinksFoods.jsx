@@ -32,8 +32,10 @@ function ExploreDrinksFoods(props) {
     console.log('Cliclou');
     if (pathname.includes('drinks')) {
       setUrlAPI('https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list');
+      history.push('/explore/drinks/ingredients');
     } else {
       setUrlAPI('https://www.themealdb.com/api/json/v1/1/list.php?i=list');
+      history.push('/explore/foods/ingredients');
     }
   };
 

@@ -4,8 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import Explore from './pages/Explore';
-import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
-import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
 import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
@@ -15,6 +13,7 @@ import DetailsFoods from './pages/DetailsFoods';
 import DetailsDrinks from './pages/DetailsDrinks';
 import ExploreDrinksFoods from './pages/ExploreDrinksFoods';
 import NotFound from './pages/NotFound';
+import ExploreIngredients from './pages/ExploreIngredients';
 
 function App() {
   return (
@@ -52,12 +51,12 @@ function App() {
           <Route
             exact
             path="/explore/foods/ingredients"
-            render={ () => (<ExploreFoodsIngredients />) }
+            render={ (props) => (<ExploreIngredients { ...props } />) }
           />
           <Route
             exact
             path="/explore/drinks/ingredients"
-            render={ () => (<ExploreDrinksIngredients />) }
+            render={ (props) => (<ExploreIngredients { ...props } />) }
           />
           <Route
             exact
