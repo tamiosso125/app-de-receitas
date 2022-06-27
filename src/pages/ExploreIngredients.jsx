@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import ReceitasContext from '../context/ReceitasContext';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -7,8 +7,9 @@ import Header from '../components/Header';
 import Cards from '../components/Cards';
 import Loading from '../components/Loading';
 
-function ExploreIngredients(props) {
-  const { location: { pathname } } = props;
+function ExploreIngredients() {
+  const location = useLocation();
+  const { pathname } = location;
   const [loading, setLoading] = useState(true);
   const { data, setUrlAPI } = useContext(ReceitasContext);
   useEffect(() => {
@@ -33,14 +34,10 @@ function ExploreIngredients(props) {
       <Header title="Explore Ingredients" buttonProfile />
       {loading
         ? <Loading />
-        : <Cards size={ 12 } returnAPI={ data } pathname={ pathname } />}
+        : <Cards size={ 12 } returnAPI={ data } />}
       <Footer />
     </>
   );
 }
-
-ExploreIngredients.propTypes = {
-  location: PropTypes.instanceOf(Object).isRequired,
-};
 
 export default ExploreIngredients;

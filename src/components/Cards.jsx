@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 
-function Cards({ returnAPI, size, pathname }) {
+function Cards({ returnAPI, size }) {
   const history = useHistory();
+  const { location: { pathname } } = history;
   const values = Object.values(returnAPI)[0];
   const isIngredientsPage = pathname.includes('ingredients');
   const urlImages = ['https://www.themealdb.com/images/ingredients/',
@@ -67,7 +68,6 @@ function Cards({ returnAPI, size, pathname }) {
 Cards.propTypes = {
   returnAPI: PropTypes.instanceOf(Object).isRequired,
   size: PropTypes.number.isRequired,
-  pathname: PropTypes.string.isRequired,
 };
 
 export default Cards;

@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
+import { Link, useLocation } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import titleGenerator from '../services/titleGenerator';
 
-function Profile(props) {
-  const { location: { pathname } } = props;
+function Profile() {
+  const location = useLocation();
+  const { pathname } = location;
   const user = localStorage.getItem('user');
   const Email = () => {
     if (user !== null) {
@@ -60,9 +60,5 @@ function Profile(props) {
     </>
   );
 }
-
-Profile.propTypes = {
-  location: PropTypes.instanceOf(Object).isRequired,
-};
 
 export default Profile;

@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import ReceitasContext from '../context/ReceitasContext';
 
-function Search({ pathname }) {
+function Search() {
   const [inputSearch, setInputSearch] = useState('');
   const [radioOption, setRadioOption] = useState('');
 
   const history = useHistory();
+  const { location: { pathname } } = history;
   const {
     setUrlAPI,
     urlRedirect,
@@ -132,9 +132,5 @@ function Search({ pathname }) {
     </div>
   );
 }
-
-Search.propTypes = {
-  pathname: PropTypes.string.isRequired,
-};
 
 export default Search;

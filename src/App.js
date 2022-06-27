@@ -22,52 +22,36 @@ function App() {
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
           <Route path="/foods/:id" render={ () => (<DetailsFoods />) } />
-          <Route
-            exact
-            path="/foods"
-            render={ (props) => (<MainPage { ...props } />) }
-          />
-          <Route
-            exact
-            path="/drinks"
-            render={ (props) => (<MainPage { ...props } />) }
-          />
+          <Route exact path="/foods" render={ () => (<MainPage />) } />
+          <Route exact path="/drinks" render={ () => (<MainPage />) } />
           <Route path="/drinks/:id" render={ () => (<DetailsDrinks />) } />
-          <Route
-            exact
-            path="/explore"
-            render={ (props) => (<Explore { ...props } />) }
-          />
+          <Route exact path="/explore" render={ () => (<Explore />) } />
           <Route
             exact
             path="/explore/foods"
-            render={ (props) => (<ExploreDrinksFoods { ...props } />) }
+            render={ () => (<ExploreDrinksFoods />) }
           />
           <Route
             exact
             path="/explore/drinks"
-            render={ (props) => (<ExploreDrinksFoods { ...props } />) }
+            render={ () => (<ExploreDrinksFoods />) }
           />
           <Route
             exact
             path="/explore/foods/ingredients"
-            render={ (props) => (<ExploreIngredients { ...props } />) }
+            render={ () => (<ExploreIngredients />) }
           />
           <Route
             exact
             path="/explore/drinks/ingredients"
-            render={ (props) => (<ExploreIngredients { ...props } />) }
+            render={ () => (<ExploreIngredients />) }
           />
           <Route
             exact
             path="/explore/foods/nationalities"
             render={ () => (<ExploreFoodsNationalities />) }
           />
-          <Route
-            exact
-            path="/profile"
-            render={ (props) => (<Profile { ...props } />) }
-          />
+          <Route exact path="/profile" render={ () => (<Profile />) } />
           <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
           <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
           <Route path="*" render={ () => (<NotFound />) } />

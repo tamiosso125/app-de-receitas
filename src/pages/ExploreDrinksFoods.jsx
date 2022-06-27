@@ -1,13 +1,12 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import titleGenerator from '../services/titleGenerator';
 
-function ExploreDrinksFoods(props) {
-  const { location: { pathname } } = props;
+function ExploreDrinksFoods() {
   const history = useHistory();
+  const { location: { pathname } } = history;
   const randomRecipes = async () => {
     let url = '';
     if (pathname.includes('drinks')) {
@@ -68,9 +67,5 @@ function ExploreDrinksFoods(props) {
     </>
   );
 }
-
-ExploreDrinksFoods.propTypes = {
-  location: PropTypes.instanceOf(Object).isRequired,
-};
 
 export default ExploreDrinksFoods;
