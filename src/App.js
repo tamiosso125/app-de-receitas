@@ -4,7 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import Explore from './pages/Explore';
-import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
+import ExploreFoodsNationalities from './pages/ExploreNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';

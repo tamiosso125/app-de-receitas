@@ -2,7 +2,7 @@ import React from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 
-function ExploreFoodsNationalities() {
+function ExploreNationalities() {
   return (
     <>
       <Header title="Explore Nationalities" buttonProfile buttonSearch />
@@ -11,4 +11,4 @@ function ExploreFoodsNationalities() {
   );
 }
 
-export default ExploreFoodsNationalities;
+export default ExploreNationalities;

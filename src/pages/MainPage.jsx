@@ -52,7 +52,9 @@ function MainPage() {
         ? <Loading />
         : (
           <div>
-            <Category returnAPI={ categoryData } />
+            {pathname.includes('nationalities')
+              ? <h2>Tem</h2>
+              : <Category returnAPI={ categoryData } />}
             <Cards size={ 12 } returnAPI={ data } />
           </div>
         )}
