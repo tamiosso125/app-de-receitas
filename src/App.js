@@ -9,11 +9,11 @@ import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipesProvider from './context/RecipesProvider';
-import DetailsFoods from './pages/DetailsFoods';
-import DetailsDrinks from './pages/DetailsDrinks';
 import ExploreDrinksFoods from './pages/ExploreDrinksFoods';
 import NotFound from './pages/NotFound';
 import ExploreIngredients from './pages/ExploreIngredients';
+import MainDetails from './pages/MainDetails';
+import InProgress from './pages/InProgress';
 
 function App() {
   return (
@@ -21,11 +21,11 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
-          <Route path="/foods/:id" render={ () => (<DetailsFoods />) } />
           <Route exact path="/foods" render={ () => (<MainPage />) } />
           <Route exact path="/drinks" render={ () => (<MainPage />) } />
-          <Route path="/drinks/:id" render={ () => (<DetailsDrinks />) } />
           <Route exact path="/explore" render={ () => (<Explore />) } />
+          <Route path="/foods/:id" render={ () => (<MainDetails />) } />
+          <Route path="/drinks/:id" render={ () => (<MainDetails />) } />
           <Route
             exact
             path="/explore/foods"
@@ -36,6 +36,7 @@ function App() {
             path="/explore/drinks"
             render={ () => (<ExploreDrinksFoods />) }
           />
+          <Route exact path="/explore" render={ () => (<Explore />) } />
           <Route
             exact
             path="/explore/foods/ingredients"
@@ -54,6 +55,8 @@ function App() {
           <Route exact path="/profile" render={ () => (<Profile />) } />
           <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
           <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
+          <Route exact path="/foods/:id/in-progress" render={ () => (<InProgress />) } />
+          <Route exact path="/drinks/:id/in-progress" render={ () => (<InProgress />) } />
           <Route path="*" render={ () => (<NotFound />) } />
         </Switch>
       </BrowserRouter>

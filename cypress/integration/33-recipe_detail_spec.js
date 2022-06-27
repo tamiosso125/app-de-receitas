@@ -148,7 +148,6 @@ describe('36 - Implemente as recomendações, para receitas de comida, a recomen
         cy.spy(win, 'fetch');
       },
     });
-
     cy.window()
       .its('fetch')
       .should('be.calledWith', 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
