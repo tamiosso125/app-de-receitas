@@ -8,6 +8,7 @@ import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import Category from '../components/Category';
 import { generatorURL, generatorURLCategory } from '../services/generatorURL';
+import DropdownNationalities from '../components/DropdownNationalities';
 
 function MainPage() {
   const location = useLocation();
@@ -53,7 +54,7 @@ function MainPage() {
         : (
           <div>
             {pathname.includes('nationalities')
-              ? <h2>Tem</h2>
+              ? <DropdownNationalities />
               : <Category returnAPI={ categoryData } />}
             <Cards size={ 12 } returnAPI={ data } />
           </div>

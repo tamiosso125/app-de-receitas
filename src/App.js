@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import Explore from './pages/Explore';
-import ExploreFoodsNationalities from './pages/ExploreNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
@@ -50,7 +49,7 @@ function App() {
           <Route
             exact
             path="/explore/foods/nationalities"
-            render={ () => (<ExploreFoodsNationalities />) }
+            render={ () => (<MainPage />) }
           />
           <Route exact path="/profile" render={ () => (<Profile />) } />
           <Route exact path="/done-recipes" render={ () => (<DoneRecipes />) } />
