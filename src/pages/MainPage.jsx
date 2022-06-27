@@ -7,25 +7,16 @@ import Loading from '../components/Loading';
 import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import Category from '../components/Category';
-import generatorURL from '../services/generatorURL';
+import { generatorURL, generatorURLCategory } from '../services/generatorURL';
 
 function MainPage() {
   const location = useLocation();
   const { pathname } = location;
-  const {
-    data,
-    setUrlAPI,
-    setCategoryAPI,
-    categoryData,
-    setPreviousPath,
-    previousPath,
-  } = useContext(ReceitasContext);
+  const { data, setUrlAPI, setCategoryAPI, categoryData,
+    setPreviousPath, previousPath } = useContext(ReceitasContext);
   const [loading, setLoading] = useState(true);
   const [changePoint, setChangePoint] = useState(pathname);
-  const categoryList = [
-    'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
-    'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
-  ];
+
   useEffect(() => {
     setChangePoint(pathname);
     setLoading(true);
@@ -38,11 +29,7 @@ function MainPage() {
         setUrlAPI(previousPath);
         setPreviousPath('');
       }
-      if (pathname === '/drinks') {
-        setCategoryAPI(categoryList[1]);
-      } else if (pathname === '/foods') {
-        setCategoryAPI(categoryList[0]);
-      }
+      setCategoryAPI(generatorURLCategory(pathname));
     };
     changeURL();
   }, [changePoint]);
