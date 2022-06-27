@@ -4,7 +4,7 @@ import ButtonSearch from './ButtonSearch';
 import ButtonProfile from './ButtonProfile';
 import Search from './Search';
 
-function Header({ title, buttonSearch, buttonProfile, route }) {
+function Header({ title, buttonSearch, buttonProfile }) {
   const [searchInput, setSearchInput] = useState(false);
 
   const showSearchInput = () => {
@@ -16,7 +16,7 @@ function Header({ title, buttonSearch, buttonProfile, route }) {
       {buttonProfile && <ButtonProfile /> }
       <h1 data-testid="page-title">{title}</h1>
       { buttonSearch && <ButtonSearch showSearch={ showSearchInput } /> }
-      { searchInput && <Search pathname={ route } /> }
+      { searchInput && <Search /> }
     </header>
   );
 }

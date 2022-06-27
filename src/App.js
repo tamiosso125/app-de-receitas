@@ -4,15 +4,14 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Login from './pages/Login';
 import MainPage from './pages/MainPage';
 import Explore from './pages/Explore';
-import ExploreFoods from './pages/ExploreFoods';
-import ExploreDrinks from './pages/ExploreDrinks';
-import ExploreFoodsIngredients from './pages/ExploreFoodsIngredients';
-import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
 import ExploreFoodsNationalities from './pages/ExploreFoodsNationalities';
 import Profile from './pages/Profile';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import RecipesProvider from './context/RecipesProvider';
+import ExploreDrinksFoods from './pages/ExploreDrinksFoods';
+import NotFound from './pages/NotFound';
+import ExploreIngredients from './pages/ExploreIngredients';
 import MainDetails from './pages/MainDetails';
 import InProgress from './pages/InProgress';
 
@@ -22,30 +21,31 @@ function App() {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" render={ () => (<Login />) } />
-          <Route path="/foods/:id" render={ () => (<MainDetails />) } />
-          <Route
-            exact
-            path="/foods"
-            render={ (props) => (<MainPage { ...props } />) }
-          />
-          <Route
-            exact
-            path="/drinks"
-            render={ (props) => (<MainPage { ...props } />) }
-          />
-          <Route path="/drinks/:id" render={ () => (<MainDetails />) } />
+          <Route exact path="/foods" render={ () => (<MainPage />) } />
+          <Route exact path="/drinks" render={ () => (<MainPage />) } />
           <Route exact path="/explore" render={ () => (<Explore />) } />
-          <Route exact path="/explore/foods" render={ () => (<ExploreFoods />) } />
-          <Route exact path="/explore/drinks" render={ () => (<ExploreDrinks />) } />
+          <Route path="/foods/:id" render={ () => (<MainDetails />) } />
+          <Route path="/drinks/:id" render={ () => (<MainDetails />) } />
+          <Route
+            exact
+            path="/explore/foods"
+            render={ () => (<ExploreDrinksFoods />) }
+          />
+          <Route
+            exact
+            path="/explore/drinks"
+            render={ () => (<ExploreDrinksFoods />) }
+          />
+          <Route exact path="/explore" render={ () => (<Explore />) } />
           <Route
             exact
             path="/explore/foods/ingredients"
-            render={ () => (<ExploreFoodsIngredients />) }
+            render={ () => (<ExploreIngredients />) }
           />
           <Route
             exact
             path="/explore/drinks/ingredients"
-            render={ () => (<ExploreDrinksIngredients />) }
+            render={ () => (<ExploreIngredients />) }
           />
           <Route
             exact
@@ -57,6 +57,7 @@ function App() {
           <Route exact path="/favorite-recipes" render={ () => (<FavoriteRecipes />) } />
           <Route exact path="/foods/:id/in-progress" render={ () => (<InProgress />) } />
           <Route exact path="/drinks/:id/in-progress" render={ () => (<InProgress />) } />
+          <Route path="*" render={ () => (<NotFound />) } />
         </Switch>
       </BrowserRouter>
     </RecipesProvider>
