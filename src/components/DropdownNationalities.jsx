@@ -14,8 +14,6 @@ function DropdownNationalities() {
     fetchNationalities();
   }, []);
   const changeUrlData = (nationality) => {
-    // ! https://www.themealdb.com/api/json/v1/1/search.php?s=
-    // https://www.themealdb.com/api/json/v1/1/filter.php?a=${nationality}
     if (nationality === 'All') {
       setUrlAPI('https://www.themealdb.com/api/json/v1/1/search.php?s=');
     } else {
@@ -27,7 +25,7 @@ function DropdownNationalities() {
       data-testid="explore-by-nationality-dropdown"
       onChange={ (event) => changeUrlData(event.target.value) }
     >
-      <option>All</option>
+      <option data-testid="All-option">All</option>
       {Object.values(nationalities)[0]
         && Object.values(nationalities)[0].map(({ strArea }, index) => (
           <option
@@ -37,8 +35,6 @@ function DropdownNationalities() {
             {strArea}
           </option>
         ))}
-      {/* <option>1</option>
-      {console.log('dentro select', Object.values(nationalities)[0])} */}
     </select>
   );
 }

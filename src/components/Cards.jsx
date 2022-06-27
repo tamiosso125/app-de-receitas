@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
 import ReceitasContext from '../context/ReceitasContext';
+import cardPathGenerator from '../services/cardPathGenerator';
 
 function Cards({ returnAPI, size }) {
   const history = useHistory();
@@ -14,9 +15,6 @@ function Cards({ returnAPI, size }) {
   const directsRecipes = (ingredient) => {
     console.log('nome', ingredient);
     if (isIngredientsPage) {
-      // Pegar a categoria e disapar o fetch
-      // www.themealdb.com/api/json/v1/1/filter.php?i=
-      // www.thecocktaildb.com/api/json/v1/1/filter.php?i=
       if (pathname.includes('foods')) {
         setPreviousPath(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         history.push('/foods');
@@ -47,7 +45,7 @@ function Cards({ returnAPI, size }) {
           <Link
             key={ element.idMeal || element.idDrink || index }
             to={ !isIngredientsPage
-              && `${pathname}/${element.idMeal || element.idDrink}` }
+              && cardPathGenerator(pathname, element) }
             onClick={ () => directsRecipes(nameCreator()) }
           >
             <div
