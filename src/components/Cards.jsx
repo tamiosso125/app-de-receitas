@@ -29,6 +29,13 @@ function Cards({ returnAPI, size }) {
           }
           return (`${urlImages[0] + element.strIngredient}-Small.png`);
         };
+        const nameCreator = () => {
+          if (isIngredientsPage) {
+            return element.strIngredient || element.strIngredient1;
+          }
+          return element.strMeal || element.strDrink;
+        };
+
         return (
           <Link
             key={ element.idMeal || element.idDrink || index }
@@ -43,19 +50,13 @@ function Cards({ returnAPI, size }) {
               <img
                 src={ isIngredientsPage
                   ? generateUrlImage()
-
-                  : (element.strMealThumb
-                || element.strDrinkThumb) }
-                alt={ isIngredientsPage
-                  ? element.strIngredient || element.strIngredient1
-                  : element.strMeal || element.strDrink }
+                  : (element.strMealThumb || element.strDrinkThumb) }
+                alt={ nameCreator() }
                 width="80px" // Só para facilitar visualização até o momento.
                 data-testid={ `${index}-card-img` }
               />
               <p data-testid={ `${index}-card-name` }>
-                { isIngredientsPage
-                  ? element.strIngredient || element.strIngredient1
-                  : element.strMeal || element.strDrink }
+                { nameCreator() }
               </p>
             </div>
           </Link>
