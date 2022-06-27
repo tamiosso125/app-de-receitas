@@ -1,8 +1,11 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
+import { useLocation } from 'react-router-dom';
 import ReceitasContext from '../context/ReceitasContext';
 
-function Category({ returnAPI, pathname }) {
+function Category({ returnAPI }) {
+  const location = useLocation();
+  const { pathname } = location;
   const { urlAPI, setUrlAPI } = useContext(ReceitasContext);
   const values = Object.values(returnAPI)[0];
   const FIVE = 5;
@@ -75,7 +78,6 @@ function Category({ returnAPI, pathname }) {
 
 Category.propTypes = {
   returnAPI: PropTypes.instanceOf(Object).isRequired,
-  pathname: PropTypes.string.isRequired,
 };
 
 export default Category;

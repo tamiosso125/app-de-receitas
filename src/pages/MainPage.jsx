@@ -55,7 +55,7 @@ function MainPage() {
         ? <Loading />
         : (
           <div>
-            <Category returnAPI={ categoryData } pathname={ changePoint } />
+            <Category returnAPI={ categoryData } />
             <Cards size={ 12 } returnAPI={ data } />
           </div>
         )}
