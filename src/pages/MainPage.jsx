@@ -11,11 +11,20 @@ import Category from '../components/Category';
 function MainPage() {
   const location = useLocation();
   const { pathname } = location;
-  const { data, setUrlAPI, setCategoryAPI, categoryData } = useContext(ReceitasContext);
+  const {
+    data,
+    setUrlAPI,
+    setCategoryAPI,
+    categoryData,
+    setPreviousPath,
+    previousPath,
+  } = useContext(ReceitasContext);
   const [loading, setLoading] = useState(true);
   const [changePoint, setChangePoint] = useState(pathname);
-  const urlDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-  const urlFoods = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
+  const urlDefaultData = [
+    'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=',
+    'https://www.themealdb.com/api/json/v1/1/search.php?s=',
+  ];
   const categoryList = [
     'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
     'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
@@ -26,11 +35,19 @@ function MainPage() {
   }, [pathname]);
   useEffect(() => {
     const changeURL = () => {
-      if (pathname === '/drinks') {
-        setUrlAPI(urlDrinks);
-        setCategoryAPI(categoryList[1]);
+      if (!previousPath) {
+        if (pathname === '/drinks') {
+          setUrlAPI(urlDefaultData[0]);
+        } else {
+          setUrlAPI(urlDefaultData[1]);
+        }
       } else {
-        setUrlAPI(urlFoods);
+        setUrlAPI(previousPath);
+        setPreviousPath('');
+      }
+      if (pathname === '/drinks') {
+        setCategoryAPI(categoryList[1]);
+      } else if (pathname === '/foods') {
         setCategoryAPI(categoryList[0]);
       }
     };
