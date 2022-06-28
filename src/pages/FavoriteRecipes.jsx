@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ShareButton from '../components/ShareButton';
 import blackHeartIcon from '../images/blackHeartIcon.svg';
 
 function FavoriteRecipes() {
-  const recipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const defaultRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
+  const [filterType, setFilterType] = useState('');
+  const [recipes, setRecipes] = useState(defaultRecipes);
+  const newLocalStorage = (idDelete) => {
+    const newRecipes = recipes.filter(({ id }) => id !== idDelete);
+    setRecipes(newRecipes);
+    localStorage.setItem('favoriteRecipes', JSON.stringify(newRecipes));
+  };
   return (
     <>
       <Header title="Favorite Recipes" buttonProfile />
@@ -13,23 +20,27 @@ function FavoriteRecipes() {
         <button
           data-testid="filter-by-all-btn"
           type="button"
+          onClick={ () => setFilterType('') }
         >
           All
         </button>
         <button
           data-testid="filter-by-food-btn"
           type="button"
+          onClick={ () => setFilterType('drink') }
         >
           Food
         </button>
         <button
           data-testid="filter-by-drink-btn"
           type="button"
+          onClick={ () => setFilterType('food') }
+
         >
           Drinks
         </button>
       </nav>
-      {recipes && recipes.map(({
+      {recipes && recipes.filter(({ type }) => type !== filterType).map(({
         id,
         image,
         name,
@@ -62,6 +73,7 @@ function FavoriteRecipes() {
             data-testid={ `${index}-horizontal-favorite-btn` }
             type="button"
             src={ blackHeartIcon }
+            onClick={ () => newLocalStorage(id) }
           >
             <img src={ blackHeartIcon } alt="blackHeart Icon" />
           </button>
