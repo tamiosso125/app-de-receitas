@@ -9,6 +9,7 @@ function RecipesProvider({ children }) {
   const [categoryData, setCategoryData] = useState({});
   const [ableToRedirect, setAbleToRedirect] = useState(false);
   const [urlRedirect, setUrlRedirect] = useState('');
+  const [previousPath, setPreviousPath] = useState('');
 
   useEffect(() => {
     const fetchFunc = async () => {
@@ -71,6 +72,8 @@ function RecipesProvider({ children }) {
     categoryData,
     setCategoryData,
     setCategoryAPI,
+    setPreviousPath,
+    previousPath,
   };
   return (
     <ReceitasContext.Provider value={ context }>

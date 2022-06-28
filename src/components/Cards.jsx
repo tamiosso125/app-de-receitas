@@ -1,20 +1,25 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { Link, useHistory } from 'react-router-dom';
+import ReceitasContext from '../context/ReceitasContext';
+import cardPathGenerator from '../services/cardPathGenerator';
 
 function Cards({ returnAPI, size }) {
   const history = useHistory();
+  const { setPreviousPath } = useContext(ReceitasContext);
   const { location: { pathname } } = history;
   const values = Object.values(returnAPI)[0];
   const isIngredientsPage = pathname.includes('ingredients');
   const urlImages = ['https://www.themealdb.com/images/ingredients/',
     'https://www.thecocktaildb.com/images/ingredients/'];
-  const directsRecipes = () => {
+  const directsRecipes = (ingredient) => {
+    console.log('nome', ingredient);
     if (isIngredientsPage) {
-      // Pegar a categoria e disapar o fetch
       if (pathname.includes('foods')) {
+        setPreviousPath(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         history.push('/foods');
       } else {
+        setPreviousPath(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`);
         history.push('/drinks');
       }
     }
@@ -40,8 +45,8 @@ function Cards({ returnAPI, size }) {
           <Link
             key={ element.idMeal || element.idDrink || index }
             to={ !isIngredientsPage
-              && `${pathname}/${element.idMeal || element.idDrink}` }
-            onClick={ () => directsRecipes() }
+              && cardPathGenerator(pathname, element) }
+            onClick={ () => directsRecipes(nameCreator()) }
           >
             <div
               data-testid={ isIngredientsPage

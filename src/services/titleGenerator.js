@@ -15,7 +15,7 @@ function titleGenerator(pathname) {
     return `${titleList[2]} ${titleList[1]}`;
   case '/explore/drinks/ingredients' || '/explore/foods/ingredients':
     return `${titleList[2]} ${titleList[3]}`;
-  case '/explore/drinks/nationalities' || '/explore/foods/nationalities':
+  case '/explore/foods/nationalities':
     return `${titleList[2]} ${titleList[4]}`;
   case '/profile':
     return titleList[5];

@@ -7,32 +7,30 @@ import Loading from '../components/Loading';
 import Cards from '../components/Cards';
 import Footer from '../components/Footer';
 import Category from '../components/Category';
+import { generatorURL, generatorURLCategory } from '../services/generatorURL';
+import DropdownNationalities from '../components/DropdownNationalities';
 
 function MainPage() {
   const location = useLocation();
   const { pathname } = location;
-  const { data, setUrlAPI, setCategoryAPI, categoryData } = useContext(ReceitasContext);
+  const { data, setUrlAPI, setCategoryAPI, categoryData,
+    setPreviousPath, previousPath } = useContext(ReceitasContext);
   const [loading, setLoading] = useState(true);
   const [changePoint, setChangePoint] = useState(pathname);
-  const urlDrinks = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=';
-  const urlFoods = 'https://www.themealdb.com/api/json/v1/1/search.php?s=';
-  const categoryList = [
-    'https://www.themealdb.com/api/json/v1/1/list.php?c=list',
-    'https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list',
-  ];
+
   useEffect(() => {
     setChangePoint(pathname);
     setLoading(true);
   }, [pathname]);
   useEffect(() => {
     const changeURL = () => {
-      if (pathname === '/drinks') {
-        setUrlAPI(urlDrinks);
-        setCategoryAPI(categoryList[1]);
+      if (!previousPath) {
+        setUrlAPI(generatorURL(pathname));
       } else {
-        setUrlAPI(urlFoods);
-        setCategoryAPI(categoryList[0]);
+        setUrlAPI(previousPath);
+        setPreviousPath('');
       }
+      setCategoryAPI(generatorURLCategory(pathname));
     };
     changeURL();
   }, [changePoint]);
@@ -55,7 +53,9 @@ function MainPage() {
         ? <Loading />
         : (
           <div>
-            <Category returnAPI={ categoryData } />
+            {pathname.includes('nationalities')
+              ? <DropdownNationalities />
+              : <Category returnAPI={ categoryData } />}
             <Cards size={ 12 } returnAPI={ data } />
           </div>
         )}
