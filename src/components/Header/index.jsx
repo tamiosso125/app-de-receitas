@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import ButtonSearch from './ButtonSearch';
-import ButtonProfile from './ButtonProfile';
-import Search from './Search';
+import ButtonSearch from '../ButtonSearch';
+import ButtonProfile from '../ButtonProfile';
+import Search from '../Search';
+
+import { HeaderContainer, HeaderTitle } from './Header.styled';
 
 function Header({ title, buttonSearch, buttonProfile }) {
   const [searchInput, setSearchInput] = useState(false);
@@ -12,12 +14,14 @@ function Header({ title, buttonSearch, buttonProfile }) {
   };
 
   return (
-    <header>
-      {buttonProfile && <ButtonProfile /> }
-      <h1 data-testid="page-title">{title}</h1>
-      { buttonSearch && <ButtonSearch showSearch={ showSearchInput } /> }
+    <>
+      <HeaderContainer>
+        {buttonProfile && <ButtonProfile /> }
+        <HeaderTitle data-testid="page-title">{title}</HeaderTitle>
+        { buttonSearch && <ButtonSearch showSearch={ showSearchInput } /> }
+      </HeaderContainer>
       { searchInput && <Search /> }
-    </header>
+    </>
   );
 }
 
