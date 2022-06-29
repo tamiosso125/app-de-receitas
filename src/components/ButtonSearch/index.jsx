@@ -1,17 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import SearchIcon from '../images/searchIcon.svg';
+import SearchIcon from '../../images/searchIcon.svg';
+
+import { SearchButton, SearchImage } from './ButtonSearch.styled';
 
 function ButtonSearch({ showSearch }) {
   return (
-    <button
+    <SearchButton
       type="button"
       data-testid="search-top-btn"
       src={ SearchIcon }
       onClick={ showSearch }
     >
-      <img src={ SearchIcon } alt="search" />
-    </button>
+      <SearchImage src={ SearchIcon } alt="search" />
+    </SearchButton>
   );
 }
 
