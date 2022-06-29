@@ -1,14 +1,16 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
-import Header from '../components/Header';
-import titleGenerator from '../services/titleGenerator';
-import ReceitasContext from '../context/ReceitasContext';
-import Loading from '../components/Loading';
-import Cards from '../components/Cards';
-import Footer from '../components/Footer';
-import Category from '../components/Category';
-import { generatorURL, generatorURLCategory } from '../services/generatorURL';
-import DropdownNationalities from '../components/DropdownNationalities';
+import Header from '../../components/Header';
+import titleGenerator from '../../services/titleGenerator';
+import ReceitasContext from '../../context/ReceitasContext';
+import Loading from '../../components/Loading';
+import Cards from '../../components/Cards';
+import Footer from '../../components/Footer';
+import Category from '../../components/Category';
+import { generatorURL, generatorURLCategory } from '../../services/generatorURL';
+import DropdownNationalities from '../../components/DropdownNationalities';
+
+import GlobalStyle from '../../style/GlobalStyle';
 
 function MainPage() {
   const location = useLocation();
@@ -44,6 +46,7 @@ function MainPage() {
   }, [data]);
   return (
     <>
+      <GlobalStyle />
       <Header
         title={ titleGenerator(changePoint) }
         buttonSearch

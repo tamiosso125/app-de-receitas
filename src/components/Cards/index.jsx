@@ -1,8 +1,15 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { Link, useHistory } from 'react-router-dom';
-import ReceitasContext from '../context/ReceitasContext';
-import cardPathGenerator from '../services/cardPathGenerator';
+import { useHistory } from 'react-router-dom';
+import ReceitasContext from '../../context/ReceitasContext';
+import cardPathGenerator from '../../services/cardPathGenerator';
+
+import {
+  CardContainer,
+  CardImage,
+  FoodName,
+  FoodLink,
+} from './Cards.styled';
 
 function Cards({ returnAPI, size }) {
   const history = useHistory();
@@ -42,29 +49,28 @@ function Cards({ returnAPI, size }) {
         };
 
         return (
-          <Link
+          <FoodLink
             key={ element.idMeal || element.idDrink || index }
             to={ !isIngredientsPage
               && cardPathGenerator(pathname, element) }
             onClick={ () => directsRecipes(nameCreator()) }
           >
-            <div
+            <CardContainer
               data-testid={ isIngredientsPage
                 ? `${index}-ingredient-card` : `${index}-recipe-card` }
             >
-              <img
+              <CardImage
                 src={ isIngredientsPage
                   ? generateUrlImage()
                   : (element.strMealThumb || element.strDrinkThumb) }
                 alt={ nameCreator() }
-                width="80px" // Só para facilitar visualização até o momento.
                 data-testid={ `${index}-card-img` }
               />
-              <p data-testid={ `${index}-card-name` }>
+              <FoodName data-testid={ `${index}-card-name` }>
                 { nameCreator() }
-              </p>
-            </div>
-          </Link>
+              </FoodName>
+            </CardContainer>
+          </FoodLink>
         );
       })}
     </main>
