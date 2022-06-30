@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
-import ReceitasContext from '../context/ReceitasContext';
+import ReceitasContext from '../../context/ReceitasContext';
+
+import {
+  CategoryContainer,
+  ButtonContainer,
+  ButtonAll,
+  ButtonCategory } from './Category.styled';
 
 function Category({ returnAPI }) {
   const location = useLocation();
@@ -47,20 +53,20 @@ function Category({ returnAPI }) {
   };
 
   return (
-    <div>
+    <CategoryContainer>
       {
         values
         && (
-          <div>
-            <button
+          <ButtonContainer>
+            <ButtonAll
               type="button"
               data-testid="All-category-filter"
               onClick={ resetFilter }
             >
               All
-            </button>
+            </ButtonAll>
             {values.slice(0, FIVE).map(({ strCategory }, index) => (
-              <button
+              <ButtonCategory
                 type="button"
                 key={ index }
                 data-testid={ `${strCategory}-category-filter` }
@@ -68,11 +74,11 @@ function Category({ returnAPI }) {
                 value={ strCategory }
               >
                 {strCategory}
-              </button>))}
-          </div>
+              </ButtonCategory>))}
+          </ButtonContainer>
         )
       }
-    </div>
+    </CategoryContainer>
   );
 }
 
