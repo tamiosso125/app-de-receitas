@@ -1,6 +1,17 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import ReceitasContext from '../context/ReceitasContext';
+import { AiOutlineSearch } from 'react-icons/ai';
+import ReceitasContext from '../../context/ReceitasContext';
+
+import {
+  FormContainer,
+  Form,
+  FormTextInput,
+  FormRadio,
+  FormLabel,
+  RadioContainer,
+  SearchButton,
+  SearchContainer } from './Search.styled';
 
 function Search() {
   const [inputSearch, setInputSearch] = useState('');
@@ -81,55 +92,59 @@ function Search() {
   };
 
   return (
-    <div>
-      <form>
-        <input
-          type="text"
-          placeholder="Search Recipe"
-          data-testid="search-input"
-          value={ inputSearch }
-          onChange={ ({ target: { value } }) => setInputSearch(value) }
-        />
-        <label htmlFor="ingredient">
-          Ingredient
-          <input
-            type="radio"
-            id="ingredient"
-            name="filter"
-            data-testid="ingredient-search-radio"
-            onChange={ () => setRadioOption('ingredient') }
+    <FormContainer>
+      <Form>
+        <SearchContainer>
+          <FormTextInput
+            type="text"
+            placeholder="Search Recipe"
+            data-testid="search-input"
+            value={ inputSearch }
+            onChange={ ({ target: { value } }) => setInputSearch(value) }
+          />
+          <SearchButton
+            type="button"
+            data-testid="exec-search-btn"
+            onClick={ () => handleSubmit() }
+          >
+            <AiOutlineSearch />
+          </SearchButton>
+        </SearchContainer>
+        <RadioContainer>
+          <FormLabel htmlFor="ingredient">
+            Ingredient
+            <FormRadio
+              type="radio"
+              id="ingredient"
+              name="filter"
+              data-testid="ingredient-search-radio"
+              onChange={ () => setRadioOption('ingredient') }
 
-          />
-        </label>
-        <label htmlFor="name">
-          Name
-          <input
-            type="radio"
-            id="name"
-            name="filter"
-            data-testid="name-search-radio"
-            onChange={ () => setRadioOption('name') }
-          />
-        </label>
-        <label htmlFor="firstLetter">
-          First Letter
-          <input
-            type="radio"
-            id="firstLetter"
-            name="filter"
-            data-testid="first-letter-search-radio"
-            onChange={ () => setRadioOption('firstLetter') }
-          />
-        </label>
-        <button
-          type="button"
-          data-testid="exec-search-btn"
-          onClick={ () => handleSubmit() }
-        >
-          Search
-        </button>
-      </form>
-    </div>
+            />
+          </FormLabel>
+          <FormLabel htmlFor="name">
+            Name
+            <FormRadio
+              type="radio"
+              id="name"
+              name="filter"
+              data-testid="name-search-radio"
+              onChange={ () => setRadioOption('name') }
+            />
+          </FormLabel>
+          <FormLabel htmlFor="firstLetter">
+            First Letter
+            <FormRadio
+              type="radio"
+              id="firstLetter"
+              name="filter"
+              data-testid="first-letter-search-radio"
+              onChange={ () => setRadioOption('firstLetter') }
+            />
+          </FormLabel>
+        </RadioContainer>
+      </Form>
+    </FormContainer>
   );
 }
 

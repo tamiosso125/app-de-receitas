@@ -2,6 +2,8 @@ import styled from 'styled-components';
 
 export const HeaderTitle = styled.h1`
   color: white;
+  text-size-adjust: auto;
+  font-size: 20px;
 `;
 
 export const HeaderContainer = styled.header`
@@ -10,5 +12,5 @@ export const HeaderContainer = styled.header`
   height: 60px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
 `;
