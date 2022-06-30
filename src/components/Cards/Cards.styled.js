@@ -26,6 +26,7 @@ export const FoodName = styled.p`
   color: #11263C;
   margin: 0 auto;
   font-weight: bold;
+  text-align: center;
 `;
 
 export const FoodLink = styled(Link)`
