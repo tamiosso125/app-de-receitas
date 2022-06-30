@@ -8,6 +8,7 @@ export const HeaderTitle = styled.h1`
 
 export const HeaderContainer = styled.header`
   background-color: #FC6011;
+  border-radius: 0 0 15px 15px;
   width: 100vw;
   height: 60px;
   display: flex;

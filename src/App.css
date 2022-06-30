@@ -1,3 +1,8 @@
+/* stylelint-disable CssSyntaxError */
+
+/* stylelint-disable selector-max-class */
+
+/* stylelint-disable selector-max-specificity */
 .meals {
   align-items: center;
   background: #0fa36b;
@@ -47,21 +52,41 @@ footer {
 }
 
 .CardContainer {
-  display: block;
-  height: 100px;
-  position: relative;
-  width: 400px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .Card {
-  position: absolute;
-  width: 50vw;
+  width: 100%;
 }
 
+.rec.rec-carousel-wrapper .rec-pagination .rec.rec-dot.rec.rec-dot_active {
+  background: #fc6011;
+}
+
+.rec.rec-carousel-wrapper .rec-pagination .rec.rec-dot.rec {
+  background: rgba(0, 0, 0, 0.1);
+  box-shadow: none;
+}
+
+.rec.rec-carousel-wrapper .rec-carousel button {
+  background: #fc6011;
+  color: white;
+}
+
+
 .imageDetails {
-  height: 50px;
+  border-radius: 15px;
+  height: 100px;
   margin: 10px;
-  width: 50px;
+  width: 100px;
+}
+
+.carousel-title {
+  font-weight: bold;
+  text-align: center;
 }
 
 .startBtn {

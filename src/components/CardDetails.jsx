@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 // import Button from 'react-bootstrap/Button';
+import Carousel from 'react-elastic-carousel';
 
 function CardDetails({ path }) {
   const [cardData, setCardData] = useState({ meals: [] });
@@ -21,10 +22,34 @@ function CardDetails({ path }) {
     console.log('SOCORRO');
     FetchApi();
   }, []);
+
+  const breakPoints = [
+    {
+      width: 2,
+      itemsToShow: 2,
+      itemsToScroll: 2,
+    },
+    {
+      width: 550,
+      itemsToShow: 2,
+      itemsToScroll: 2,
+    },
+    {
+      width: 768,
+      itemsToShow: 2,
+      itemsToScroll: 2,
+    },
+    {
+      width: 1200,
+      itemsToShow: 2,
+      itemsToScroll: 2,
+    },
+  ];
   // console.log('Card: ', cardData);
   return (
     <div className="CardContainer">
-      {cardData[keyAPI] !== null
+      <Carousel breakPoints={ breakPoints }>
+        {cardData[keyAPI] !== null
         && Object.values(cardData)[0].slice(0, SIX).map((element, index) => (
           <div
             key={ element.idMeal || element.idDrink }
@@ -36,14 +61,18 @@ function CardDetails({ path }) {
               src={ element.strMealThumb || element.strDrinkThumb }
               alt={ element.strMeal || element.strDrink }
             />
-            <p>
+            <p className="carousel-title">
               {element.strCategory || element.strAlcoholic }
             </p>
-            <p data-testid={ `${index}-recomendation-title` }>
+            <p
+              data-testid={ `${index}-recomendation-title` }
+              className="carousel-title"
+            >
               {element.strMeal || element.strDrink }
             </p>
           </div>
         ))}
+      </Carousel>
     </div>
   );
 }
