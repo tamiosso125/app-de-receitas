@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import ShareButton from '../components/ShareButton';
-import blackHeartIcon from '../images/blackHeartIcon.svg';
+import Header from '../../components/Header';
+import ShareButton from '../../components/ShareButton';
+import blackHeartIcon from '../../images/blackHeartIcon.svg';
+
+import {
+  CardContainer,
+  CardImage,
+  FoodName,
+  FavoriteButton,
+  FoodCategory,
+} from './FavoriteRecipes.styled';
 
 function FavoriteRecipes() {
   const defaultRecipes = JSON.parse(localStorage.getItem('favoriteRecipes'));
@@ -49,35 +57,35 @@ function FavoriteRecipes() {
         alcoholicOrNot,
         type,
       }, index) => (
-        <div key={ id }>
+        <CardContainer key={ id }>
           <Link to={ `/${type}s/${id}` }>
-            <img
+            <CardImage
               data-testid={ `${index}-horizontal-image` }
               src={ image }
               alt={ name }
               width="80px"
             />
-            <p
+            <FoodName
               data-testid={ `${index}-horizontal-name` }
             >
               {name}
-            </p>
+            </FoodName>
           </Link>
-          <p
+          <FoodCategory
             data-testid={ `${index}-horizontal-top-text` }
           >
             {`${nationality || alcoholicOrNot} - ${category}`}
-          </p>
+          </FoodCategory>
           <ShareButton index={ index } id={ id } type={ type } />
-          <button
+          <FavoriteButton
             data-testid={ `${index}-horizontal-favorite-btn` }
             type="button"
             src={ blackHeartIcon }
             onClick={ () => newLocalStorage(id) }
           >
             <img src={ blackHeartIcon } alt="blackHeart Icon" />
-          </button>
-        </div>
+          </FavoriteButton>
+        </CardContainer>
       ))}
     </>
   );

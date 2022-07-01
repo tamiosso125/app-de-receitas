@@ -7,7 +7,8 @@ import {
   LoginButton,
   LoginInput,
   LoginLabel,
-  LogoImg } from './Login.styled';
+  LogoImg,
+  LoginTitle } from './Login.styled';
 
 import GlobalStyle from '../../style/GlobalStyle';
 
@@ -47,6 +48,7 @@ function Login() {
           src="https://img.icons8.com/external-flaticons-flat-flat-icons/256/000000/external-recipe-book-foodies-flaticons-flat-flat-icons.png"
           alt="recipe"
         />
+        <LoginTitle>Icooking</LoginTitle>
         <LoginForm>
           <LoginLabel htmlFor="email">
             <LoginInput

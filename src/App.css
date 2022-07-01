@@ -52,6 +52,7 @@ footer {
 }
 
 .CardContainer {
+  height: 300px;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -123,3 +124,41 @@ footer {
     transform: rotate(-10deg);
   }
 }
+
+#sparkles > path {
+	animation: sparklyBits 1000ms infinite;
+	position: absolute;
+}
+
+#message {
+	margin-top: 20px;
+	text-align: center;
+  color: #FC6011;
+}
+
+@for $i from 1 through 29 {
+	#sparkles > path:nth-child(#{$i}) {
+		animation-delay: (35ms * $i);
+	}
+}
+
+@keyframes sparklyBits {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* // Boring Bit
+body {
+	align-items: center;
+	background-color: #FAFAFA;
+	display: flex;
+	height: 100vh;
+	justify-content: center;
+	width: 100vw;
+} */
+
+

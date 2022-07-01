@@ -14,6 +14,7 @@ export const SectionContainer = styled.div`
 export const ImageContainer = styled.div`
   position: absolute;
   width: 100vw;
+  height: 340px;
   display: flex;
   justify-content: flex-end;
   float: right;

@@ -9,11 +9,14 @@ export const LoginContainer = styled.div`
 `;
 
 export const LoginTitle = styled.h1`
-  color: #11263C;
+  font-family: 'Arima', cursive;
+  margin-top: -20px;
+  color: #FC6011;
   text-align: center;
 `;
 
 export const LoginForm = styled.form`
+  margin-top: 20px;
   height: 25%;
   display: flex;
   flex-direction: column;
@@ -28,6 +31,9 @@ export const LoginLabel = styled.label`
 export const LoginInput = styled.input`
   height: 40px;
   width: 70vw;
+  border-radius: 15px;
+  border: 1px solid #FC6011;
+  text-align: center;
 `;
 
 export const LogoImg = styled.img`
@@ -41,5 +47,6 @@ export const LoginButton = styled.button`
   width: 71vw;
   font-weight: bold;
   font-size: 20px;
+  border-radius: 15px;
   color: #F0F5F9;
 `;

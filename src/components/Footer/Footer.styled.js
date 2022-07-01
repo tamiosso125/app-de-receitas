@@ -13,5 +13,5 @@ export const FooterButton = styled.button`
 `;
 
 export const ButtonImages = styled.img`
-  
+  color: white;
 `;

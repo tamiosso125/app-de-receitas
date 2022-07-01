@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import shareIcon from '../images/shareIcon.svg';
+import shareIcon from '../../images/shareIcon.svg';
+
+import { StyledButton, ShareImage } from './ShareButton.styled';
 
 const copy = require('clipboard-copy');
 
@@ -13,14 +15,14 @@ function ShareButton({ index, type, id }) {
   };
   return (
     <>
-      <button
+      <StyledButton
         data-testid={ `${index}-horizontal-share-btn` }
         type="button"
         src={ shareIcon }
         onClick={ copyLink }
       >
-        <img src={ shareIcon } alt="share Icon" />
-      </button>
+        <ShareImage src={ shareIcon } alt="share Icon" />
+      </StyledButton>
       {linkCopied && <p>Link copied!</p>}
     </>
   );
