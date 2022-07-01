@@ -1,8 +1,10 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
-import Footer from '../components/Footer';
-import Header from '../components/Header';
-import titleGenerator from '../services/titleGenerator';
+import Footer from '../../components/Footer';
+import Header from '../../components/Header';
+import titleGenerator from '../../services/titleGenerator';
+
+import { ExploreButton, ExploreContainer } from './ExploreDrinksFoods.styled';
 
 function ExploreDrinksFoods() {
   const history = useHistory();
@@ -36,33 +38,35 @@ function ExploreDrinksFoods() {
   return (
     <>
       <Header title={ titleGenerator(pathname) } buttonProfile />
-      <Link to={ `${pathname}/ingredients` }>
-        <button
-          type="button"
-          data-testid="explore-by-ingredient"
-          onClick={ () => searchIngredients() }
-        >
-          By Ingredient
-        </button>
-      </Link>
-      {!pathname.includes('drinks')
+      <ExploreContainer>
+        <Link to={ `${pathname}/ingredients` }>
+          <ExploreButton
+            type="button"
+            data-testid="explore-by-ingredient"
+            onClick={ () => searchIngredients() }
+          >
+            By Ingredient
+          </ExploreButton>
+        </Link>
+        {!pathname.includes('drinks')
         && (
           <Link to="/explore/foods/nationalities">
-            <button
+            <ExploreButton
               type="button"
               data-testid="explore-by-nationality"
             >
               By Nationality
-            </button>
+            </ExploreButton>
           </Link>
         )}
-      <button
-        type="button"
-        data-testid="explore-surprise"
-        onClick={ () => randomRecipes() }
-      >
-        Surprise me!
-      </button>
+        <ExploreButton
+          type="button"
+          data-testid="explore-surprise"
+          onClick={ () => randomRecipes() }
+        >
+          Surprise me!
+        </ExploreButton>
+      </ExploreContainer>
       <Footer />
     </>
   );
