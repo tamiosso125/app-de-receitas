@@ -17,6 +17,7 @@ export const ImageContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   float: right;
+  overflow-x: hidden;
 `;
 
 export const DetailsImage = styled.img`
@@ -80,9 +81,12 @@ export const Instructions = styled.p`
 
 export const StartButton = styled.button`
   font-size: 20px;
-  
+  margin-left: 33vw;
+  border: none;
+  box-shadow: 2px 2px 5px black;
+  border-radius: 15px;
 `;
 
 export const StartContainer = styled.footer`
-
+  overflow-x: hidden;
 `;
